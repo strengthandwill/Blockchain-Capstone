@@ -15,7 +15,8 @@ contract Ownable {
 
     //  2) create an internal constructor that sets the _owner var to the creater of the contract 
     constructor() internal {
-        transferOwnership(msg.sender);
+        _owner = msg.sender;
+        emit OwnershipTransferred(address(0), _owner);
     }
 
     function contractOwner() public view returns (address) {
