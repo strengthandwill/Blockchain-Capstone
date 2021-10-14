@@ -7,40 +7,70 @@ import 'openzeppelin-solidity/contracts/token/ERC721/IERC721Receiver.sol';
 import "./Oraclize.sol";
 
 contract Ownable {    
-    //  TODO's
     //  1) create a private '_owner' variable of type address with a public getter function
     address private _owner;
 
+    //  5) create an event that emits anytime ownerShip is transfered (including in the constructor)
+    event OwnershipTransferred(address owner, address newOwner);    
+
     //  2) create an internal constructor that sets the _owner var to the creater of the contract 
-    constructor(address owner) {
-        transferOwnership(owner);
+    constructor() internal {
+        transferOwnership(msg.sender);
     }
 
     //  3) create an 'onlyOwner' modifier that throws if called by any account other than the owner.
     modifier onlyOwner() {
-        require(msg.sender == _owner, "Only owner");
+        require(msg.sender == _owner, "Only owner can perform the action");
         _;
     }
-    
-    //  5) create an event that emits anytime ownerShip is transfered (including in the constructor)
-    event OwnershipTransferred(address owner, address newOwner);
+
+    // make sure the new owner is a real address
+    modifier validAddress(address addr) {
+        require(addr != address(0), "Address must be valid");
+        _;
+    }    
 
     //  4) fill out the transferOwnership function
-    function transferOwnership(address newOwner) public onlyOwner {
+    function transferOwnership(address newOwner) public onlyOwner validAddress(newOwner) {
         // add functionality to transfer control of the contract to a newOwner.
-        // TODO make sure the new owner is a real address
         address owner = _owner;
         this._owner = newOwner;
         emit OwnershipTransferred(owner, newOwner);
     }
 }
 
-//  TODO's: Create a Pausable contract that inherits from the Ownable contract
-//  1) create a private '_paused' variable of type bool
-//  2) create a public setter using the inherited onlyOwner modifier 
-//  3) create an internal constructor that sets the _paused variable to false
-//  4) create 'whenNotPaused' & 'paused' modifier that throws in the appropriate situation
-//  5) create a Paused & Unpaused event that emits the address that triggered the event
+//  Create a Pausable contract that inherits from the Ownable contract
+contract Pausable is Ownable {
+    //  1) create a private '_paused' variable of type bool
+    bool private _paused;
+
+    //  5) create a Paused & Unpaused event that emits the address that triggered the event    
+    event Paused(address caller);
+    event Unpaused(address caller);        
+
+    //  3) create an internal constructor that sets the _paused variable to false
+    constructor() internal {
+        _paused = false;
+    }
+
+    //  4) create 'whenNotPaused' & 'paused' modifier that throws in the appropriate situation
+    modifier whenNotPaused() {
+        require(!_paused, "Contract must be not paused to perform the action");
+        _;
+    }
+
+    modifier paused() {
+        require(_paused, "Contract must be paused to perform this action");
+        _;
+    }
+
+    //  2) create a public setter using the inherited onlyOwner modifier 
+    function setPaused(bool newPaused) public onlyOwner {
+        _paused = newPaused;
+        if (paused) { emit Paused(msg.sender); } 
+        else { emit Unpaused(msg.sender); }
+    }
+}
 
 contract ERC165 {
     bytes4 private constant _INTERFACE_ID_ERC165 = 0x01ffc9a7;
