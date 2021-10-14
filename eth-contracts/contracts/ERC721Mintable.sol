@@ -18,6 +18,10 @@ contract Ownable {
         transferOwnership(msg.sender);
     }
 
+    function contractOwner() public view returns (address) {
+        return _owner;
+    }    
+
     //  3) create an 'onlyOwner' modifier that throws if called by any account other than the owner.
     modifier onlyOwner() {
         require(msg.sender == _owner, "Only owner can perform the action");
@@ -147,29 +151,37 @@ contract ERC721 is Pausable, ERC165 {
     }
 
     function balanceOf(address owner) public view returns (uint256) {
-        // TODO return the token balance of given address
+        // return the token balance of given address
         // TIP: remember the functions to use for Counters. you can refresh yourself with the link above
+        return _ownedTokensCount[owner].current();
     }
 
     function ownerOf(uint256 tokenId) public view returns (address) {
-        // TODO return the owner of the given tokenId
+        // return the owner of the given tokenId
+        return _tokenOwner[tokenId];
     }
 
 //    @dev Approves another address to transfer the given token ID
     function approve(address to, uint256 tokenId) public {
+        address owner = ownerOf(tokenId);
+        address contractOwner = contractOwner();
         
-        // TODO require the given address to not be the owner of the tokenId
+        // require the given address to not be the owner of the tokenId
+        require(to != owner, "Address must not be the owner of the token");
 
-        // TODO require the msg sender to be the owner of the contract or isApprovedForAll() to be true
+        // require the msg sender to be the owner of the contract or isApprovedForAll() to be true        
+        require (msg.sender == contractOwner || isApprovedForAll(owner, to), "Caller must be the owner of the contract or isApprovedForAll() must be true");
 
-        // TODO add 'to' address to token approvals
+        // add 'to' address to token approvals
+        _tokenApprovals[tokenId] = to;
 
-        // TODO emit Approval Event
-
+        // emit Approval Event
+        emit Approval(owner, to, tokenId);
     }
 
     function getApproved(uint256 tokenId) public view returns (address) {
-        // TODO return token approval if it exists
+        // return token approval if it !=s
+        return _tokenApprovals[tokenId];
     }
 
     /**
@@ -235,26 +247,40 @@ contract ERC721 is Pausable, ERC165 {
     // TIP: remember the functions to use for Counters. you can refresh yourself with the link above
     function _mint(address to, uint256 tokenId) internal {
 
-        // TODO revert if given tokenId already exists or given address is invalid
+        // revert if given tokenId already exists or given address is invalid
+        require(!_exists(tokenId), "TokenId must not exists");  
+        require(to != address(0), "Address must be valid");
+              
   
-        // TODO mint tokenId to given address & increase token count of owner
+        // mint tokenId to given address & increase token count of owner
+        _tokenOwner[tokenId] = to;
+        _ownedTokensCount[to].increment();        
 
-        // TODO emit Transfer event
+        // emit Transfer event
+        emit Transfer(msg.sender,to, tokenId);
     }
 
     // @dev Internal function to transfer ownership of a given token ID to another address.
     // TIP: remember the functions to use for Counters. you can refresh yourself with the link above
     function _transferFrom(address from, address to, uint256 tokenId) internal {
+        address owner = ownerOf(tokenId);
 
-        // TODO: require from address is the owner of the given token
+        // require from address is the owner of the given token
+        require(from == owner, "Address must be the owner of the given token");
 
-        // TODO: require token is being transfered to valid address
+        // require token is being transfered to valid address
+        require(to != address(0), "Address must be valid");
         
-        // TODO: clear approval
+        // clear approval
+        delete _tokenApprovals[tokenId];
 
-        // TODO: update token counts & transfer ownership of the token ID 
+        // update token counts & transfer ownership of the token ID
+        _ownedTokensCount[to].increment();
+        _ownedTokensCount[from].decrement();
+        _tokenOwner[tokenId] = to;
 
-        // TODO: emit correct event
+        // emit correct event
+        emit Transfer(from,to, tokenId);
     }
 
     /**
@@ -523,6 +549,7 @@ contract ERC721Metadata is ERC721Enumerable, usingOraclize {
 //      -takes in a 'to' address, tokenId, and tokenURI as parameters
 //      -returns a true boolean upon completion of the function
 //      -calls the superclass mint and setTokenURI functions
+contract ERC721Mintable { }
 
 
 

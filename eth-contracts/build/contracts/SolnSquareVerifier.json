@@ -1,0 +1,220 @@
+{
+  "contractName": "SolnSquareVerifier",
+  "abi": [],
+  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3fe6080604052600080fdfea165627a7a72305820922fe9399c4817cb8d3f4cba7b9f9f5a9c22437788078b85869fcf5f230ffdd80029",
+  "deployedBytecode": "0x6080604052600080fdfea165627a7a72305820922fe9399c4817cb8d3f4cba7b9f9f5a9c22437788078b85869fcf5f230ffdd80029",
+  "sourceMap": "306:49:3:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;306:49:3;;;;;;;",
+  "deployedSourceMap": "306:49:3:-;;;;;",
+  "source": "pragma solidity >=0.4.21 <0.6.0;\n\nimport \"./ERC721Mintable.sol\";\n\n// TODO define a contract call to the zokrates generated solidity contract <Verifier> or <renamedVerifier>\ncontract SquareVerifier { }\n\n\n\n// TODO define another contract named SolnSquareVerifier that inherits from your ERC721Mintable class\ncontract SolnSquareVerifier is ERC721Mintable { }\n\n\n\n// TODO define a solutions struct that can hold an index & an address\n\n\n// TODO define an array of the above struct\n\n\n// TODO define a mapping to store unique solutions submitted\n\n\n\n// TODO Create an event to emit when a solution is added\n\n\n\n// TODO Create a function to add the solutions to the array and emit the event\n\n\n\n// TODO Create a function to mint new NFT only after the solution has been verified\n//  - make sure the solution is unique (has not been used before)\n//  - make sure you handle metadata as well as tokenSuplly\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+  "sourcePath": "/Users/strengthandwill/workspace/blockchain-nanodegree/capstone/Blockchain-Capstone/eth-contracts/contracts/SolnSquareVerifier.sol",
+  "ast": {
+    "absolutePath": "/Users/strengthandwill/workspace/blockchain-nanodegree/capstone/Blockchain-Capstone/eth-contracts/contracts/SolnSquareVerifier.sol",
+    "exportedSymbols": {
+      "SolnSquareVerifier": [
+        7429
+      ],
+      "SquareVerifier": [
+        7426
+      ]
+    },
+    "id": 7430,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 7424,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".21",
+          "<",
+          "0.6",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:32:3"
+      },
+      {
+        "absolutePath": "/Users/strengthandwill/workspace/blockchain-nanodegree/capstone/Blockchain-Capstone/eth-contracts/contracts/ERC721Mintable.sol",
+        "file": "./ERC721Mintable.sol",
+        "id": 7425,
+        "nodeType": "ImportDirective",
+        "scope": 7430,
+        "sourceUnit": 1098,
+        "src": "34:30:3",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 7426,
+        "linearizedBaseContracts": [
+          7426
+        ],
+        "name": "SquareVerifier",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 7430,
+        "src": "173:27:3"
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 7427,
+              "name": "ERC721Mintable",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 1097,
+              "src": "337:14:3",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_ERC721Mintable_$1097",
+                "typeString": "contract ERC721Mintable"
+              }
+            },
+            "id": 7428,
+            "nodeType": "InheritanceSpecifier",
+            "src": "337:14:3"
+          }
+        ],
+        "contractDependencies": [
+          1097
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 7429,
+        "linearizedBaseContracts": [
+          7429,
+          1097
+        ],
+        "name": "SolnSquareVerifier",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 7430,
+        "src": "306:49:3"
+      }
+    ],
+    "src": "0:922:3"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/strengthandwill/workspace/blockchain-nanodegree/capstone/Blockchain-Capstone/eth-contracts/contracts/SolnSquareVerifier.sol",
+    "exportedSymbols": {
+      "SolnSquareVerifier": [
+        7429
+      ],
+      "SquareVerifier": [
+        7426
+      ]
+    },
+    "id": 7430,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 7424,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".21",
+          "<",
+          "0.6",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:32:3"
+      },
+      {
+        "absolutePath": "/Users/strengthandwill/workspace/blockchain-nanodegree/capstone/Blockchain-Capstone/eth-contracts/contracts/ERC721Mintable.sol",
+        "file": "./ERC721Mintable.sol",
+        "id": 7425,
+        "nodeType": "ImportDirective",
+        "scope": 7430,
+        "sourceUnit": 1098,
+        "src": "34:30:3",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 7426,
+        "linearizedBaseContracts": [
+          7426
+        ],
+        "name": "SquareVerifier",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 7430,
+        "src": "173:27:3"
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 7427,
+              "name": "ERC721Mintable",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 1097,
+              "src": "337:14:3",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_ERC721Mintable_$1097",
+                "typeString": "contract ERC721Mintable"
+              }
+            },
+            "id": 7428,
+            "nodeType": "InheritanceSpecifier",
+            "src": "337:14:3"
+          }
+        ],
+        "contractDependencies": [
+          1097
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 7429,
+        "linearizedBaseContracts": [
+          7429,
+          1097
+        ],
+        "name": "SolnSquareVerifier",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 7430,
+        "src": "306:49:3"
+      }
+    ],
+    "src": "0:922:3"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.6+commit.b259423e.Emscripten.clang"
+  },
+  "networks": {
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0xfCCDce9917F88CffBd1ec057565bCc8828284316",
+      "transactionHash": "0x9465b188e9d2ab4393486966800ca8f1169d8d1d83c54fef465cb3770942f853"
+    }
+  },
+  "schemaVersion": "3.0.1",
+  "updatedAt": "2021-10-14T09:43:04.942Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
