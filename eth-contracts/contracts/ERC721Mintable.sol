@@ -164,13 +164,12 @@ contract ERC721 is Pausable, ERC165 {
 //    @dev Approves another address to transfer the given token ID
     function approve(address to, uint256 tokenId) public {
         address owner = ownerOf(tokenId);
-        address contractOwner = contractOwner();
         
         // require the given address to not be the owner of the tokenId
         require(to != owner, "Address must not be the owner of the token");
 
         // require the msg sender to be the owner of the contract or isApprovedForAll() to be true        
-        require (msg.sender == contractOwner || isApprovedForAll(owner, to), "Caller must be the owner of the contract or isApprovedForAll() must be true");
+        require (msg.sender == contractOwner() || isApprovedForAll(owner, to), "Caller must be the owner of the contract or isApprovedForAll() must be true");
 
         // add 'to' address to token approvals
         _tokenApprovals[tokenId] = to;
@@ -490,7 +489,7 @@ contract ERC721Metadata is ERC721Enumerable, usingOraclize {
     string private _symbol;
     string private _baseTokenURI;
 
-    // TODO: create private mapping of tokenId's to token uri's called '_tokenURIs'
+    // create private mapping of tokenId's to token uri's called '_tokenURIs'
     mapping(uint256 => string) private _tokenURIs;
 
     bytes4 private constant _INTERFACE_ID_ERC721_METADATA = 0x5b5e139f;
@@ -500,7 +499,6 @@ contract ERC721Metadata is ERC721Enumerable, usingOraclize {
      *     bytes4(keccak256('symbol()')) ^
      *     bytes4(keccak256('tokenURI(uint256)'))
      */
-
 
     constructor (string memory name, string memory symbol, string memory baseTokenURI) public {
         // set instance var values
@@ -529,7 +527,7 @@ contract ERC721Metadata is ERC721Enumerable, usingOraclize {
     }
 
 
-    // TODO: Create an internal function to set the tokenURI of a specified tokenId
+    // Create an internal function to set the tokenURI of a specified tokenId
     // It should be the _baseTokenURI + the tokenId in string form
     // TIP #1: use strConcat() from the imported oraclizeAPI lib to set the complete token URI
     // TIP #2: you can also use uint2str() to convert a uint to a string
@@ -541,15 +539,24 @@ contract ERC721Metadata is ERC721Enumerable, usingOraclize {
     }
 }
 
-//  TODO's: Create CustomERC721Token contract that inherits from the ERC721Metadata contract. You can name this contract as you please
+//  Create CustomERC721Token contract that inherits from the ERC721Metadata contract. You can name this contract as you please
 //  1) Pass in appropriate values for the inherited ERC721Metadata contract
 //      - make the base token uri: https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/
-//  2) create a public mint() that does the following:
-//      -can only be executed by the contract owner
-//      -takes in a 'to' address, tokenId, and tokenURI as parameters
-//      -returns a true boolean upon completion of the function
-//      -calls the superclass mint and setTokenURI functions
-contract ERC721Mintable { }
+contract ERC721Mintable is ERC721Metadata('Udacity', 'UDA', 'https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/') {    
+    constructor () public {
+    }
+
+    //  2) create a public mint() that does the following:
+    //      -can only be executed by the contract owner
+    //      -takes in a 'to' address, tokenId, and tokenURI as parameters
+    //      -returns a true boolean upon completion of the function
+    //      -calls the superclass mint and setTokenURI functions
+    function mint(address to, uint256 tokenId) public onlyOwner returns (bool) {
+        super._mint(to, tokenId);
+        super.setTokenURI(tokenId);
+        return true;
+    }
+}
 
 
 
