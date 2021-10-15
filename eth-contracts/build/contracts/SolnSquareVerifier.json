@@ -919,13 +919,13 @@
           }
         ],
         "contractDependencies": [
-          202,
-          156,
           90,
           1099,
+          202,
           1136,
           692,
           990,
+          156,
           7461
         ],
         "contractKind": "contract",
@@ -4397,13 +4397,13 @@
           }
         ],
         "contractDependencies": [
-          202,
-          156,
           90,
           1099,
+          202,
           1136,
           692,
           990,
+          156,
           7461
         ],
         "contractKind": "contract",
@@ -7771,15 +7771,21 @@
     "version": "0.5.6+commit.b259423e.Emscripten.clang"
   },
   "networks": {
+    "4": {
+      "events": {},
+      "links": {},
+      "address": "0xc8980a5fe65267b29561F29Bcf273Dea3F55d76A",
+      "transactionHash": "0x0af56e1f411ec17038fc66511d873c6ddee421e74272ce6e59f82c88ae1fea29"
+    },
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x0222c8BA3b8999a128a25956Add1D52ef49420fE",
-      "transactionHash": "0xd5f6c8284234db29b767899c600c47eaa51cee80109caf738923c1163300b898"
+      "address": "0xe031e8e4Cd9ab8445DB24960AdDF5fC72FFB0d66",
+      "transactionHash": "0x4c1fb638a57e2b2e33a6c2842bc1198f6285ddda4cbea6b9fe13787fcdc90655"
     }
   },
   "schemaVersion": "3.0.1",
-  "updatedAt": "2021-10-15T07:44:01.273Z",
+  "updatedAt": "2021-10-15T14:07:33.484Z",
   "devdoc": {
     "methods": {
       "isApprovedForAll(address,address)": {
