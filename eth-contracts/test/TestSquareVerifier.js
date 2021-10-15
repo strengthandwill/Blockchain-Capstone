@@ -6,7 +6,7 @@ contract('Verifier', accounts => {
     const account_one = accounts[0];
     let proof = require('./proof');
 
-    describe('zokrates square verifier', function () {
+    describe('Verifier Test', function () {
         beforeEach(async function () {
             this.contract = await Verifier.new({ from: account_one });
 
