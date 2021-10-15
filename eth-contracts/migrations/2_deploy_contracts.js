@@ -7,6 +7,6 @@ module.exports = function(deployer) {
   deployer.deploy(ERC721Mintable);
   deployer.deploy(SquareVerifier)
     .then(() => {
-      deployer.deploy(SolnSquareVerifier, SolnSquareVerifier.address);
+      deployer.deploy(SolnSquareVerifier, SquareVerifier.address);
     });  
 };

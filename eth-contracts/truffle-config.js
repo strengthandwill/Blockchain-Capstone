@@ -20,7 +20,7 @@
 
 const HDWalletProvider = require('truffle-hdwallet-provider');
 const infuraKey = "b45d1acd22264f47ae188fced8e20ef1"
-const mnemonic = "lottery season immense loyal provide brick member asthma flock anxiety merit master";
+const mnemonic = "bronze hip catch clay ice note mystery inherit engine offer vintage happy";
 // const infuraKey = "fj4jll3k.....";
 //
 // const fs = require('fs');
