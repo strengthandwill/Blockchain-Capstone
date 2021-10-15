@@ -543,7 +543,12 @@ contract ERC721Metadata is ERC721Enumerable, usingOraclize {
 //  Create CustomERC721Token contract that inherits from the ERC721Metadata contract. You can name this contract as you please
 //  1) Pass in appropriate values for the inherited ERC721Metadata contract
 //      - make the base token uri: https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/
-contract ERC721Mintable is ERC721Metadata('Udacity', 'UDA', 'https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/') {    
+contract ERC721Mintable is ERC721Metadata(
+        'Udacity', 
+        'UDA', 
+        'https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/'
+    ) {
+            
     constructor () public {
     }
 
