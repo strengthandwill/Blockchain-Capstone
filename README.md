@@ -2,16 +2,46 @@
 
 The capstone will build upon the knowledge you have gained in the course in order to build a decentralized housing product. 
 
-# Project Resources
 
-* [Remix - Solidity IDE](https://remix.ethereum.org/)
-* [Visual Studio Code](https://code.visualstudio.com/)
-* [Truffle Framework](https://truffleframework.com/)
-* [Ganache - One Click Blockchain](https://truffleframework.com/ganache)
-* [Open Zeppelin ](https://openzeppelin.org/)
-* [Interactive zero knowledge 3-colorability demonstration](http://web.mit.edu/~ezyang/Public/graph/svg.html)
-* [Docker](https://docs.docker.com/install/)
-* [ZoKrates](https://github.com/Zokrates/ZoKrates)
+
+# Test the application
+
+1. Start Ganache on port 8585
+2. Go to solidity project and install dependencies
+    ```
+    npm install
+    ```
+3. Goto directory eth-contracts
+    ```
+    cd eth-contracts
+    ```
+4. Compile contracts
+    ```
+    truffle compile
+    ```
+5. Migrate contracts
+    ```
+    truffle migrate --reset
+    ```    
+6. Run tests truffle test . All tests must pass
+    ```
+    truffle test
+    ```
+    ![](/images/tests.png)
+
+
+
+# Deploy the application
+1. Migrate to rinkeby network
+    ```
+    truffle migrate --network rinkeby --reset
+    ```
+2. Run minting script in order to mint 10 tokens with 10 proofs
+    ```
+    node script/mint.js
+    ```
+
+
 
 # Contract Address
 
@@ -20,6 +50,24 @@ The capstone will build upon the knowledge you have gained in the course in orde
 * SolnSquareVerifier: [0xc8980a5fe65267b29561F29Bcf273Dea3F55d76A](https://rinkeby.etherscan.io/address/0xc8980a5fe65267b29561F29Bcf273Dea3F55d76A)
 
 
+
+# Opensea
+* Storefront: [udacity-boyraxnpft](https://testnets.opensea.io/collection/udacity-boyraxnpft)
+* Asset #1: [0xd8a1e0322c823087d91aaacf290ea5341c208417/1](https://testnets.opensea.io/assets/0xd8a1e0322c823087d91aaacf290ea5341c208417/1)
+    * Sold Txn: [0xd0f522efe063b0c9c940a5c927d8b2aeeb0bd5039d76d39e9960c3cd095ee2c0](https://rinkeby.etherscan.io/tx/0xd0f522efe063b0c9c940a5c927d8b2aeeb0bd5039d76d39e9960c3cd095ee2c0)
+* Asset #2: [0xd8a1e0322c823087d91aaacf290ea5341c208417/2](https://testnets.opensea.io/assets/0xd8a1e0322c823087d91aaacf290ea5341c208417/2)
+    * Sold Txn: [0x4bd1a07ecb0d50b6ef525a086e7f312e21b032f1ebf05fc96f71c08ab11d20c3](https://rinkeby.etherscan.io/tx/0x4bd1a07ecb0d50b6ef525a086e7f312e21b032f1ebf05fc96f71c08ab11d20c3)
+* Asset #3: [0xd8a1e0322c823087d91aaacf290ea5341c208417/3](https://testnets.opensea.io/assets/0xd8a1e0322c823087d91aaacf290ea5341c208417/3)
+    * Sold Txn: [0x11a490e0bf1a58b582fa2d79c2c5cd709f4adea4329bd202719d706a219749a6](https://rinkeby.etherscan.io/tx/0x11a490e0bf1a58b582fa2d79c2c5cd709f4adea4329bd202719d706a219749a6)
+* Asset #4: [0xd8a1e0322c823087d91aaacf290ea5341c208417/4](https://testnets.opensea.io/assets/0xd8a1e0322c823087d91aaacf290ea5341c208417/4)
+    * Sold Txn: [0x58760b5c3e94ac7a98d9699e30f1011ec597947b9cba1386788e4902bf7f9494](https://rinkeby.etherscan.io/tx/0x58760b5c3e94ac7a98d9699e30f1011ec597947b9cba1386788e4902bf7f9494)
+* Asset #5: [0xd8a1e0322c823087d91aaacf290ea5341c208417/5](https://testnets.opensea.io/assets/0xd8a1e0322c823087d91aaacf290ea5341c208417/5)
+    * Sold Tx: [0x5b1192c2880fc029698216de7c0df54c1ff911872284776c20a7e9fc823499bd](https://rinkeby.etherscan.io/tx/0x5b1192c2880fc029698216de7c0df54c1ff911872284776c20a7e9fc823499bd)
+* Asset #6: [0xd8a1e0322c823087d91aaacf290ea5341c208417/6](https://testnets.opensea.io/assets/0xd8a1e0322c823087d91aaacf290ea5341c208417/6)
+* Asset #7: [0xd8a1e0322c823087d91aaacf290ea5341c208417/7](https://testnets.opensea.io/assets/0xd8a1e0322c823087d91aaacf290ea5341c208417/7)
+* Asset #8: [0xd8a1e0322c823087d91aaacf290ea5341c208417/8](https://testnets.opensea.io/assets/0xd8a1e0322c823087d91aaacf290ea5341c208417/8)
+* Asset #9: [0xd8a1e0322c823087d91aaacf290ea5341c208417/9](https://testnets.opensea.io/assets/0xd8a1e0322c823087d91aaacf290ea5341c208417/9)
+* Asset #10: [0xd8a1e0322c823087d91aaacf290ea5341c208417/10](https://testnets.opensea.io/assets/0xd8a1e0322c823087d91aaacf290ea5341c208417/10)
 
 # ABIs
 
@@ -1486,19 +1534,13 @@ The capstone will build upon the knowledge you have gained in the course in orde
 ```
 
 
+# Project Resources
 
-# Token without Proof
-* Mint with MyEtherWallet: https://www.myetherwallet.com/wallet/interact
-* Storefront: https://testnets.opensea.io/collection/udacity-v3
-* NFT1 (Sold): https://testnets.opensea.io/assets/0x9748519d18273ef5182ef7f8b01bb07aeb949a75/1/
-* NFT2 (Sold): https://testnets.opensea.io/assets/0x9748519d18273ef5182ef7f8b01bb07aeb949a75/2/
-* NFT3 (Sold): https://testnets.opensea.io/assets/0x9748519d18273ef5182ef7f8b01bb07aeb949a75/3/
-* NFT4 (Sold): https://testnets.opensea.io/assets/0x9748519d18273ef5182ef7f8b01bb07aeb949a75/4/
-* NFT5 (Sold): https://testnets.opensea.io/assets/0x9748519d18273ef5182ef7f8b01bb07aeb949a75/5/
-* NFT6: https://testnets.opensea.io/assets/0x9748519d18273ef5182ef7f8b01bb07aeb949a75/6/
-* NFT7: https://testnets.opensea.io/assets/0x9748519d18273ef5182ef7f8b01bb07aeb949a75/7/
-* NFT8: https://testnets.opensea.io/assets/0x9748519d18273ef5182ef7f8b01bb07aeb949a75/8/
-* NFT9: https://testnets.opensea.io/assets/0x9748519d18273ef5182ef7f8b01bb07aeb949a75/9/
-* NFT10: https://testnets.opensea.io/assets/0x9748519d18273ef5182ef7f8b01bb07aeb949a75/10/
-
-# Token with Proof
+* [Remix - Solidity IDE](https://remix.ethereum.org/)
+* [Visual Studio Code](https://code.visualstudio.com/)
+* [Truffle Framework](https://truffleframework.com/)
+* [Ganache - One Click Blockchain](https://truffleframework.com/ganache)
+* [Open Zeppelin ](https://openzeppelin.org/)
+* [Interactive zero knowledge 3-colorability demonstration](http://web.mit.edu/~ezyang/Public/graph/svg.html)
+* [Docker](https://docs.docker.com/install/)
+* [ZoKrates](https://github.com/Zokrates/ZoKrates)
