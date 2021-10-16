@@ -15,7 +15,8 @@ contract('SolnSquareVerifier', accounts => {
         })
 
         // Test if a new solution can be added for contract - SolnSquareVerifier
-        it('Test verification with correct proof', async function () {  
+        it('Test if a new solution can be added for contract', async function () {  
+            let proof = require(`./proof0`);
             let key = await this.contract.getKey.call(
                 proof.proof.A,
                 proof.proof.A_p,
@@ -28,33 +29,36 @@ contract('SolnSquareVerifier', accounts => {
                 proof.input
             );                            
             
-            let result= await this.contract.addSolution(key, tokenId, account_one, { from: account_one });                    
+            let result= await this.contract.addSolution(key, tokenId, account_one, { from: account_one });
             assert.equal(result.logs.length, 1, "Should emit only 1 event");            
             assert.equal(result.logs[0].event, "SolutionAdded", "SolutionAdded event should be emitted");            
         });
 
 
         // Test if an ERC721 token can be minted for contract - SolnSquareVerifier
-        it('Test verification with correct proof', async function () {             
-            let beforeResult = (await this.contract.totalSupply.call()).toNumber();
-            
-            await this.contract.mintToken(
-                proof.proof.A,
-                proof.proof.A_p,
-                proof.proof.B,
-                proof.proof.B_p,
-                proof.proof.C,
-                proof.proof.C_p,
-                proof.proof.H,
-                proof.proof.K,
-                proof.input,
-                tokenId,
-                account_one,                
-                { from: account_one }
-            );            
-            let afterResult = (await this.contract.totalSupply.call()).toNumber();
+        it('Test if an ERC721 token can be minted for contract', async function () {
+            for (let i=0; i<10; i++) {
+                let proof = require(`./proof${i}`);
+                let beforeResult = (await this.contract.totalSupply.call()).toNumber();
+                
+                await this.contract.mintToken(
+                    proof.proof.A,
+                    proof.proof.A_p,
+                    proof.proof.B,
+                    proof.proof.B_p,
+                    proof.proof.C,
+                    proof.proof.C_p,
+                    proof.proof.H,
+                    proof.proof.K,
+                    proof.input,
+                    tokenId,
+                    account_one,                
+                    { from: account_one }
+                );            
+                let afterResult = (await this.contract.totalSupply.call()).toNumber();
 
-            assert.equal(afterResult, beforeResult + 1, "A token should be minted");
+                assert.equal(afterResult, beforeResult + 1, "A token should be minted");
+            }
         });  
     });    
 });
