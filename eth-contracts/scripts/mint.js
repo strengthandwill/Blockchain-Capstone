@@ -1,7 +1,9 @@
+require('dotenv').config();
+
 const HDWalletProvider = require("truffle-hdwallet-provider");
 const web3 = require("web3");
-const MNEMONIC = "bronze hip catch clay ice note mystery inherit engine offer vintage happy";
-const INFURA_KEY = "b45d1acd22264f47ae188fced8e20ef1";
+const MNEMONIC = process.env.MNEMONIC;
+const INFURA_KEY = process.env.INFURA_KEY;
 const OWNER_ADDRESS = "0x92444Ff513042184E4585b23eD359454fB3E5527";
 const CONTRACT_ADDRESS = "0xd8A1E0322C823087d91AaaCf290EA5341C208417";
 const NETWORK = 'rinkeby';

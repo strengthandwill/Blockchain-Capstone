@@ -4,26 +4,36 @@ The capstone will build upon the knowledge you have gained in the course in orde
 
 
 
-# Test the application
+# Setup the application
 
-1. Start Ganache on port 8585
-2. Go to solidity project and install dependencies
+1. Go to solidity project and install dependencies
     ```
     npm install
     ```
-3. Goto directory eth-contracts
+2. Create .env for environment variables
+    ```
+    INFURA_KEY = <your_infura_key>
+    MNEMONIC = <your_mnemonic_key>
+    ```
+
+
+
+# Test the application
+
+1. Start Ganache on port 8585
+2. Goto directory eth-contracts
     ```
     cd eth-contracts
     ```
-4. Compile contracts
+3. Compile contracts
     ```
     truffle compile
     ```
-5. Migrate contracts
+4. Migrate contracts
     ```
     truffle migrate --reset
     ```    
-6. Run tests truffle test . All tests must pass
+5. Run tests truffle test . All tests must pass
     ```
     truffle test
     ```
@@ -36,7 +46,7 @@ The capstone will build upon the knowledge you have gained in the course in orde
     ```
     truffle migrate --network rinkeby --reset
     ```
-2. Run minting script in order to mint 10 tokens with 10 proofs
+2. Run minting script in order to mint 10 tokens
     ```
     node script/mint.js
     ```

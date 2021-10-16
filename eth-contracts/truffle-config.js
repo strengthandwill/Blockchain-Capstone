@@ -18,9 +18,11 @@
  *
  */
 
+ require('dotenv').config();
+
 const HDWalletProvider = require('truffle-hdwallet-provider');
-const infuraKey = "b45d1acd22264f47ae188fced8e20ef1"
-const mnemonic = "bronze hip catch clay ice note mystery inherit engine offer vintage happy";
+const infuraKey = process.env.INFURA_KEY;
+const mnemonic = process.env.MNEMONIC;
 // const infuraKey = "fj4jll3k.....";
 //
 // const fs = require('fs');
