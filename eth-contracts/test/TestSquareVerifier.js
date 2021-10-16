@@ -4,7 +4,7 @@ var Verifier = artifacts.require('Verifier');
 contract('Verifier', accounts => {
 
     const account_one = accounts[0];
-    let proof = require('./proof');
+    
 
     describe('Verifier Test', function () {
         beforeEach(async function () {
@@ -15,22 +15,26 @@ contract('Verifier', accounts => {
         // Test verification with correct proof
         // - use the contents from proof.json generated from zokrates steps
         it('Test verification with correct proof', async function () {
-            let result = await this.contract.verifyTx.call(
-                proof.proof.A,
-                proof.proof.A_p,
-                proof.proof.B,
-                proof.proof.B_p,
-                proof.proof.C,
-                proof.proof.C_p,
-                proof.proof.H,
-                proof.proof.K,
-                proof.input
-            );
-            assert.equal(result, true, "Test verification with correct proof should passed");
+            for (let i=0; i<10; i++) {
+                let proof = require(`./proof${i}`);
+                let result = await this.contract.verifyTx.call(
+                    proof.proof.A,
+                    proof.proof.A_p,
+                    proof.proof.B,
+                    proof.proof.B_p,
+                    proof.proof.C,
+                    proof.proof.C_p,
+                    proof.proof.H,
+                    proof.proof.K,
+                    proof.input
+                );
+                assert.equal(result, true, "Test verification with correct proof should passed");
+            }
         });
 
         // Test verification with incorrect proof
         it('Test verification with incorrect proof', async function () { 
+            let proof = require(`./proof0`);
             let result = await this.contract.verifyTx.call(
                 proof.proof.A,
                 proof.proof.A_p,

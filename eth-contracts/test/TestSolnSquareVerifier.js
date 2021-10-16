@@ -5,7 +5,7 @@ contract('SolnSquareVerifier', accounts => {
 
     const account_one = accounts[0];
     const account_two = accounts[1];
-    let proof = require('./proof');
+    let proof = require('./proof0');
     let tokenId = 1;
 
     describe('SolnSquareVerifier Test', function () {

@@ -5,7 +5,7 @@ const INFURA_KEY = "b45d1acd22264f47ae188fced8e20ef1";
 const OWNER_ADDRESS = "0x92444Ff513042184E4585b23eD359454fB3E5527";
 const CONTRACT_ADDRESS = "0xc8980a5fe65267b29561F29Bcf273Dea3F55d76A";
 const NETWORK = 'rinkeby';
-const MINT_COUNT = 1;
+const MINT_COUNT = 10;
 
 if (!MNEMONIC || !INFURA_KEY || !OWNER_ADDRESS || !NETWORK) {
     console.error("Please set a mnemonic, infura key, owner, network, and contract address.")
@@ -19,8 +19,6 @@ async function main() {
     const web3Instance = new web3(provider);
 
     if (CONTRACT_ADDRESS) {
-        let proof = require('./proof4');
-
         const contract = new web3Instance.eth.Contract(
             CONTRACT_ABI,
             CONTRACT_ADDRESS
@@ -28,7 +26,8 @@ async function main() {
 
         // Creatures issued directly to the owner.
         for (var i = 0; i < MINT_COUNT; i++) {
-            console.log(i);
+            let proof = require(`./proof${i}`);
+            console.log(`Minting NFT #${i}`);
             try {
                 const result = await contract.methods
                     .mintToken(
@@ -41,7 +40,7 @@ async function main() {
                         proof.proof.H,
                         proof.proof.K,
                         proof.input,
-                        20 + i,
+                        i,
                         OWNER_ADDRESS                    
                     ).send({ from: OWNER_ADDRESS });
                 console.log("Minted creature. Transaction: " + result.transactionHash);
