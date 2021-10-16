@@ -61,7 +61,7 @@ The capstone will build upon the knowledge you have gained in the course in orde
 
 
 
-# Opensea
+# OpenSea MarketPlace
 * Storefront: [udacity-boyraxnpft](https://testnets.opensea.io/collection/udacity-boyraxnpft)
 * Asset #1: [0xd8a1e0322c823087d91aaacf290ea5341c208417/1](https://testnets.opensea.io/assets/0xd8a1e0322c823087d91aaacf290ea5341c208417/1)
     * Sold Txn: [0xd0f522efe063b0c9c940a5c927d8b2aeeb0bd5039d76d39e9960c3cd095ee2c0](https://rinkeby.etherscan.io/tx/0xd0f522efe063b0c9c940a5c927d8b2aeeb0bd5039d76d39e9960c3cd095ee2c0)
@@ -78,6 +78,8 @@ The capstone will build upon the knowledge you have gained in the course in orde
 * Asset #8: [0xd8a1e0322c823087d91aaacf290ea5341c208417/8](https://testnets.opensea.io/assets/0xd8a1e0322c823087d91aaacf290ea5341c208417/8)
 * Asset #9: [0xd8a1e0322c823087d91aaacf290ea5341c208417/9](https://testnets.opensea.io/assets/0xd8a1e0322c823087d91aaacf290ea5341c208417/9)
 * Asset #10: [0xd8a1e0322c823087d91aaacf290ea5341c208417/10](https://testnets.opensea.io/assets/0xd8a1e0322c823087d91aaacf290ea5341c208417/10)
+
+
 
 # ABIs
 
