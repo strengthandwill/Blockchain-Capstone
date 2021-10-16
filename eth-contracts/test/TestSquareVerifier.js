@@ -15,11 +15,8 @@ contract('Verifier', accounts => {
         // Test verification with correct proof
         // - use the contents from proof.json generated from zokrates steps
         it('Test verification with correct proof', async function () {
-            // for (let i=0; i<10; i++) {
-                let i = 1;
-                console.log(`Verifying NFT#${i}`)
-                let proof = require(`./proof${i}`);
-                console.log(proof.proof.A);
+            for (let i=0; i<10; i++) {                
+                let proof = require(`../../zokrates/code/square/proof${i}`);
                 let result = await this.contract.verifyTx.call(
                     proof.proof.A,
                     proof.proof.A_p,
@@ -33,12 +30,12 @@ contract('Verifier', accounts => {
                     { from: account_one }
                 );
                 assert.equal(result, true, "Test verification with correct proof should passed");
-            // }
+            }
         });
 
         // Test verification with incorrect proof
         it('Test verification with incorrect proof', async function () { 
-            let proof = require(`./proof0`);
+            let proof = require(`../../zokrates/code/square/proof0`);
             let result = await this.contract.verifyTx.call(
                 proof.proof.A,
                 proof.proof.A_p,

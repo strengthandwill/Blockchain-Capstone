@@ -5,8 +5,7 @@ contract('SolnSquareVerifier', accounts => {
 
     const account_one = accounts[0];
     const account_two = accounts[1];
-    let proof = require('./proof0');
-    let tokenId = 1;
+
 
     describe('SolnSquareVerifier Test', function () {
         beforeEach(async function () {
@@ -16,32 +15,11 @@ contract('SolnSquareVerifier', accounts => {
 
         // Test if a new solution can be added for contract - SolnSquareVerifier
         it('Test if a new solution can be added for contract', async function () {  
-            let proof = require(`./proof0`);
-            let key = await this.contract.getKey.call(
-                proof.proof.A,
-                proof.proof.A_p,
-                proof.proof.B,
-                proof.proof.B_p,
-                proof.proof.C,
-                proof.proof.C_p,
-                proof.proof.H,
-                proof.proof.K,
-                proof.input
-            );                            
-            
-            let result= await this.contract.addSolution(key, tokenId, account_one, { from: account_one });
-            assert.equal(result.logs.length, 1, "Should emit only 1 event");            
-            assert.equal(result.logs[0].event, "SolutionAdded", "SolutionAdded event should be emitted");            
-        });
-
-
-        // Test if an ERC721 token can be minted for contract - SolnSquareVerifier
-        it('Test if an ERC721 token can be minted for contract', async function () {
             for (let i=0; i<10; i++) {
-                let proof = require(`./proof${i}`);
-                let beforeResult = (await this.contract.totalSupply.call()).toNumber();
+                let proof = require(`../../zokrates/code/square/proof${i}`);
+                let tokenId = i;            
                 
-                await this.contract.mintToken(
+                let result= await this.contract.addSolution(
                     proof.proof.A,
                     proof.proof.A_p,
                     proof.proof.B,
@@ -50,9 +28,38 @@ contract('SolnSquareVerifier', accounts => {
                     proof.proof.C_p,
                     proof.proof.H,
                     proof.proof.K,
-                    proof.input,
-                    tokenId,
-                    account_one,                
+                    proof.input,                
+                    tokenId,  
+                    { from: account_one });
+                assert.equal(result.logs.length, 1, "Should emit only 1 event");            
+                assert.equal(result.logs[0].event, "SolutionAdded", "SolutionAdded event should be emitted");            
+            }
+        });
+
+
+        // Test if an ERC721 token can be minted for contract - SolnSquareVerifier
+        it('Test if an ERC721 token can be minted for contract', async function () {
+            for (let i=0; i<10; i++) {
+                let proof = require(`../../zokrates/code/square/proof${i}`);
+                let tokenId = i;
+                let beforeResult = (await this.contract.totalSupply.call()).toNumber();
+
+                await this.contract.addSolution(
+                    proof.proof.A,
+                    proof.proof.A_p,
+                    proof.proof.B,
+                    proof.proof.B_p,
+                    proof.proof.C,
+                    proof.proof.C_p,
+                    proof.proof.H,
+                    proof.proof.K,
+                    proof.input,                
+                    tokenId,  
+                    { from: account_one });
+                
+                await this.contract.mintToken(
+                    account_one,                                    
+                    tokenId,                    
                     { from: account_one }
                 );            
                 let afterResult = (await this.contract.totalSupply.call()).toNumber();
